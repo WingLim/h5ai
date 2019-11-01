@@ -9,7 +9,6 @@ const settings = Object.assign({
     autoplay: true,
     types: []
 }, allsettings['preview-vid']);
-// const tpl = '<video id="pv-content-vid"/>';
 
 const updateGui = () => {
     const el = dom('#pv-content-vid')[0];
@@ -60,27 +59,19 @@ const load = item => {
         }
         function loadXMLDoc() {
             const xhr = new XHR();
+            xhr.open('GET', m3u8, true);
             xhr.onreadystatechange = () => {
-                if (xhr.readyState === 4) { // eslint-disable-line
-                    if (xhr.status === 200) { // eslint-disable-line
+                if (xhr.readyState === XHR.DONE) {
+                    if (xhr.status === 200) {
                         loadPlayer(m3u8);
-                    } else if (xhr.status === 404) { // eslint-disable-line
+                    } else if (xhr.status === 404) {
                         loadPlayer(fileurl);
                     }
                 }
             };
-            xhr.open('GET', m3u8, true);
             xhr.send();
         }
         loadXMLDoc();
-        /* const $el = dom(tpl)
-            .on('loadedmetadata', () => resolve($el))
-            .attr('controls', 'controls');
-        if (settings.autoplay) {
-            $el.attr('autoplay', 'autoplay');
-        }
-        addUnloadFn($el[0]);
-        $el.attr('src', item.absHref); */
     });
 };
 
