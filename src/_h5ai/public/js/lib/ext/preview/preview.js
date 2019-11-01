@@ -132,6 +132,9 @@ const dropEvent = ev => {
 };
 
 const onKeydown = ev => {
+    if (win.document.querySelector('#dplayer')) {
+        return;
+    }
     const key = ev.keyCode;
 
     if (key === 27) { // esc

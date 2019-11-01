@@ -93,6 +93,8 @@ ghu.task('build:copy', runtime => {
                 }
             }))
             .then(write(mapper, {overwrite: true, cluster: true})),
+        read(`${SRC}/_h5ai/public/ext/*.js`)
+            .then(write(mapper, {overwrite: true, cluster: true})),
 
         read(`${ROOT}/*.md`)
             .then(write(mapper_root, {overwrite: true, cluster: true}))
