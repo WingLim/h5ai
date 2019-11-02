@@ -132,9 +132,6 @@ const dropEvent = ev => {
 };
 
 const onKeydown = ev => {
-    if (win.document.querySelector('#dplayer')) {
-        return;
-    }
     const key = ev.keyCode;
 
     if (key === 27) { // esc
@@ -143,7 +140,7 @@ const onKeydown = ev => {
     } else if (key === 8 || key === 37) { // backspace, left
         dropEvent(ev);
         prev();
-    } else if (key === 13 || key === 32 || key === 39) { // enter, space, right
+    } else if (key === 13 || key === 39) { // enter, right
         dropEvent(ev);
         next();
     } else if (key === 70) { // f
