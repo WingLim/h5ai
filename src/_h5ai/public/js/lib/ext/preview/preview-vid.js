@@ -55,6 +55,11 @@ const load = item => {
                     type: 'webvtt'
                 }
             });
+            document.onkeydown = ev => {
+                if (ev.keyCode === 32) {
+                    dplayer.toggle();
+                }
+            };
             preview.setLabels([preview.item.label], '', '');
         }
         function loadXMLDoc() {
