@@ -9,6 +9,7 @@ const settings = Object.assign({
     autoplay: true,
     types: []
 }, allsettings['preview-vid']);
+const tpl = '<div id="pv-content-vid" style="width:100%;height:100%"></div>';
 
 const updateGui = () => {
     const el = dom('#pv-content-vid')[0];
@@ -27,23 +28,27 @@ const updateGui = () => {
     ]);
 };
 
+const addUnloadFn = el => {
+    el.unload = () => {
+        el.src = '';
+        el.load();
+    };
+};
+
 const load = item => {
-    return new Promise(resolve => { // eslint-disable-line
+    return new Promise(resolve => {
+        const xhr = new XHR();
         const fileurl = item.absHref;
         const filepath = fileurl.slice(0, fileurl.lastIndexOf('/'));
         const filename = fileurl.slice(fileurl.lastIndexOf('/') + 1);
         const filenotype = fileurl.slice(fileurl.lastIndexOf('/') + 1, fileurl.lastIndexOf('.'));
         const m3u8 = filepath + '/__' + filename + '__/video.m3u8';
         const sub = filepath + '/' + filenotype + '.vtt';
-        function loadPlayer(videourl) {
-            document.querySelector('#pv-container').classList.remove('hidden');
-            document.querySelector('#pv-spinner').style.display = 'none';
-            const dp = document.createElement('div');
-            dp.id = 'dplayer';
-            dp.style.cssText = 'width:100%;height:100%';
-            document.querySelector('#pv-container').appendChild(dp);
+        const $el = dom(tpl);
+        resolve($el);
+        const loadPlayer = videourl => {
             const dplayer = new DPlayer({ // eslint-disable-line
-                container: document.querySelector('#dplayer'),
+                container: document.querySelector('#pv-content-vid'),
                 autoplay: settings.autoplay,
                 mutex: true,
                 video: {
@@ -61,9 +66,8 @@ const load = item => {
                 }
             };
             preview.setLabels([preview.item.label], '', '');
-        }
-        function loadXMLDoc() {
-            const xhr = new XHR();
+        };
+        const loadXML = () => {
             xhr.open('GET', m3u8, true);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === XHR.DONE) {
@@ -75,8 +79,9 @@ const load = item => {
                 }
             };
             xhr.send();
-        }
-        loadXMLDoc();
+        };
+        loadXML();
+        addUnloadFn($el[0]);
     });
 };
 
