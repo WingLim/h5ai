@@ -397,5 +397,9 @@
         "maxSubfolders": 50,
         "naturalSort": true,
         "ignorecase": true
+    },
+
+    "password": {
+        "enabled": true
     }
 }

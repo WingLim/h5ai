@@ -3,6 +3,7 @@ const server = require('../server');
 const location = require('../core/location');
 const settings = require('../core/settings');
 const types = require('../core/types');
+const password = require('../ext/password');
 
 const reEndsWithSlash = /\/$/;
 const reSplitPath = /^(.*\/)([^\/]+\/?)$/;
@@ -102,6 +103,12 @@ const fetchContent = absHref => {
                     each(response.items, jsonItem => {
                         getItem(jsonItem);
                     });
+                } else if (response.password && password.addVerify()) {
+                    if (response.items) {
+                        each(response.items, jsonItem => {
+                            getItem(jsonItem);
+                        });
+                    }
                 }
 
                 resolve(item);

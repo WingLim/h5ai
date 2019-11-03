@@ -8,6 +8,7 @@ require('../ext/download');
 require('../ext/filter');
 require('../ext/google-analytics');
 require('../ext/info');
+require('../ext/password');
 require('../ext/l10n');
 require('../ext/piwik-analytics');
 require('../ext/preview');

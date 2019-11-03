@@ -46,6 +46,27 @@ class Context {
         return Json::load($this->setup->get('CONF_PATH') . '/types.json');
     }
 
+    public function has_password($path) {
+        if (is_readable($path . '/.password')) {
+            if ($_COOKIE['password_verify'] === 'true'){
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function verify_password($path, $password) {
+        $file = $path . '/.password';
+        if (strcmp($password, file_get_contents($file)) === 0) {
+            setcookie('password_verify', 'true', NULL, NULL, NULL, NULL, TRUE);
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function login_admin($pass) {
         $this->session->set(Context::$AS_ADMIN_SESSION_KEY, strcasecmp(hash('sha512', $pass), $this->passhash) === 0);
         return $this->session->get(Context::$AS_ADMIN_SESSION_KEY);
