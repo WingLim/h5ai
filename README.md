@@ -1,8 +1,9 @@
 # h5ai
 
-[![license][license-img]][github] [![web][web-img]][web] [![github][github-img]][github]
+[![license][license-img]][github] [![github][github-img]][github]
 
 A modern HTTP web server index for Apache httpd, lighttpd, and nginx.
+Modify use DPlayer to preview video
 
 
 ## Important
@@ -16,8 +17,7 @@ A modern HTTP web server index for Apache httpd, lighttpd, and nginx.
 
 ## Build
 
-There are installation ready packages for the latest [releases][release] and
-[dev builds][develop]. But to build **h5ai** yourself either `git clone` or
+There are installation ready packages for the latest [releases][release]. But to build **h5ai** yourself either `git clone` or
 download the repository. From within the root folder run the following
 commands to find a fresh zipball in folder `build` (tested on linux only,
 requires [`node 10.0+`][node] to be installed, might work on other
@@ -60,14 +60,11 @@ THE SOFTWARE.
 too. Exceptions are some [Material Design icons][material-design-icons] (CC BY 4.0).
 
 
-[web]: https://larsjung.de/h5ai/
-[github]: https://github.com/lrsjng/h5ai
-[github-issues]: https://github.com/lrsjng/h5ai/issues
-[release]: https://release.larsjung.de/h5ai/
-[develop]: https://release.larsjung.de/h5ai/develop/
+[github]: https://github.com/WingLim/h5ai_dplayer
+[github-issues]: https://github.com/WingLim/h5ai_dplayer/issues
+[release]: https://github.com/WingLim/h5ai_dplayer/releases
 [node]: https://nodejs.org
 [material-design-icons]: https://github.com/google/material-design-icons
 
 [license-img]: https://img.shields.io/badge/license-MIT-a0a060.svg?style=flat-square
-[web-img]: https://img.shields.io/badge/web-larsjung.de/h5ai-a0a060.svg?style=flat-square
-[github-img]: https://img.shields.io/badge/github-lrsjng/h5ai-a0a060.svg?style=flat-square
+[github-img]: https://img.shields.io/badge/github-winglim/h5ai-a0a060.svg?style=flat-square
