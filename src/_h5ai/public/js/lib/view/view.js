@@ -229,7 +229,7 @@ const onLocationChanged = item => {
             items.push(child);
         }
     });
-
+    dom('#login-wrapper').rm();
     setHint('empty');
     setItems(items);
 };

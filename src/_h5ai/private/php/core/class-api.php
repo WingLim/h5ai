@@ -62,9 +62,16 @@ class Api {
         if ($this->request->query('items', false)) {
             $href = $this->request->query('items.href');
             $what = $this->request->query_numeric('items.what');
-            if ($this->context->has_password($this->context->get_current_path()) && $this->context->query_option('password.enabled', false)) {
-                $response['password'] = 'true';
+            $path = $this->context->get_current_path();
+            if ($this->context->has_password($path) && $this->context->query_option('password.enabled', false)) {
+                $response['password'] = true;
+                if ($_COOKIE['password_verify'] === 'true') {
+                    $response['items'] = $this->context->get_items($href, $what);
+                } else {
+                    $response['items'] = '';
+                }
             }else{
+                $response['password'] = false;
                 $response['items'] = $this->context->get_items($href, $what);
             }
         }

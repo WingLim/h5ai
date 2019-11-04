@@ -11,15 +11,6 @@ const reload = () => {
     global.window.location.reload();
 };
 
-
-const getCookie = name => {
-    const arr = global.window.document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
-    if (arr !== null) {
-        return unescape(arr[2]);
-    }
-    return false;
-};
-
 const onVerify = () => {
     server.request({
         action: 'password',
@@ -34,11 +25,12 @@ const onKeydown = ev => {
 };
 
 const addVerify = () => {
-    dom(verifyTpl).appTo('#content');
-
-    if (getCookie('password_verify') === 'true') {
-        return true;
+    try {
+        dom('#login-wrapper').rm();
+    } finally {
+        dom(verifyTpl).appTo('#content');
     }
+
     dom('#password').on('keydown', onKeydown)[0].focus();
     dom('#login').on('click', onVerify);
     return false;

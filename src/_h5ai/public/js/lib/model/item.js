@@ -99,16 +99,12 @@ const fetchContent = absHref => {
             resolve(item);
         } else {
             server.request({action: 'get', items: {href: item.absHref, what: 1}}).then(response => {
-                if (response.items) {
+                if (response.password && response.items === '') {
+                    password.addVerify();
+                } else if (!response.password && response.items) {
                     each(response.items, jsonItem => {
                         getItem(jsonItem);
                     });
-                } else if (response.password && password.addVerify()) {
-                    if (response.items) {
-                        each(response.items, jsonItem => {
-                            getItem(jsonItem);
-                        });
-                    }
                 }
 
                 resolve(item);
