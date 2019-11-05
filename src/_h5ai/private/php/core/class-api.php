@@ -65,10 +65,13 @@ class Api {
             $path = $this->context->get_current_path();
             if ($this->context->has_password($path) && $this->context->query_option('password.enabled', false)) {
                 $response['password'] = true;
-                if ($_COOKIE['password_verify'] === 'true') {
+                if ($this->context->verify_cookie($path, $_COOKIE['password_verify'])) {
                     $response['items'] = $this->context->get_items($href, $what);
                 } else {
-                    $response['items'] = '';
+                    $response['items'][] = [
+                        "href" => '/' . end(explode("/",$path)) . '/' ,
+                        "protected" => true
+                    ];
                 }
             }else{
                 $response['password'] = false;

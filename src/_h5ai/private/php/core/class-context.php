@@ -54,17 +54,33 @@ class Context {
         }
     }
 
+    private function read_password($path) {
+        $file = $path . '/.password';
+        $password = file_get_contents($file);
+        list($password) = explode("\n",$password);
+        $password = trim($password);
+        return $password;
+    }
+
     public function verify_password($path, $password) {
-        $file = fopen($path . '/.password', 'rb');
-        $real_password = fgets($file);
-        if (strcmp($password, $real_password) === 0) {
-            setcookie('password_verify', 'true', NULL, NULL, NULL, NULL, TRUE);
+        $real = $this->read_password($path);
+        if (strcmp($password, $real) === 0) {
+            setcookie('password_verify', md5($real), NULL, NULL, NULL, NULL, TRUE);
             return true;
         } else {
             return false;
         }
-        fclose($file);
     }
+
+    public function verify_cookie($path, $cookie) {
+        $real = $this->read_password($path);
+        if (strcmp($cookie, md5($real)) === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function login_admin($pass) {
         $this->session->set(Context::$AS_ADMIN_SESSION_KEY, strcasecmp(hash('sha512', $pass), $this->passhash) === 0);
         return $this->session->get(Context::$AS_ADMIN_SESSION_KEY);
