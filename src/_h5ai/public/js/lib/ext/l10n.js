@@ -20,6 +20,7 @@ const defaultTranslations = {
     details: 'details',
     download: 'download',
     empty: 'empty',
+    protected: 'protected',
     files: 'files',
     filter: 'filter',
     folders: 'folders',

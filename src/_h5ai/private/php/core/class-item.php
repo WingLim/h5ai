@@ -58,6 +58,7 @@ class Item {
         if ($this->is_folder) {
             $obj['managed'] = $this->context->is_managed_href($this->href);
             $obj['fetched'] = $this->is_content_fetched;
+            $obj['protected'] = $this->context->has_password($this->path);
         }
 
         return $obj;

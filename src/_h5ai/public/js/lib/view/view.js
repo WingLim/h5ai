@@ -213,6 +213,15 @@ const setHint = l10nKey => {
     checkHint();
 };
 
+const setProtect = item => {
+    if (item.protected) {
+        dom('#view-hint').rmCls('l10n-empty');
+        setHint('protected');
+    } else {
+        setHint('empty');
+    }
+};
+
 const onLocationChanged = item => {
     if (!item) {
         item = location.getItem();
@@ -230,7 +239,7 @@ const onLocationChanged = item => {
         }
     });
     dom('#login-wrapper').rm();
-    setHint('empty');
+    setProtect(item);
     setItems(items);
 };
 
@@ -243,7 +252,7 @@ const onLocationRefreshed = (item, added, removed) => {
         }
     });
 
-    setHint('empty');
+    setProtect(item);
     changeItems(add, removed);
 };
 

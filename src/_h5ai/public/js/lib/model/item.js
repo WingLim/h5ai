@@ -71,7 +71,9 @@ const getItem = options => {
     if (options.fetched) {
         item.isContentFetched = true;
     }
-
+    if (options.protected) {
+        item.protected = true;
+    }
     return item;
 };
 
@@ -125,6 +127,7 @@ const Item = absHref => {
         size: null,
         parent: null,
         isManaged: null,
+        protected: null,
         content: {}
     });
 
