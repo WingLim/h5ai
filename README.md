@@ -6,6 +6,8 @@ A modern HTTP web server index for Apache httpd, lighttpd, and nginx.
 
 Modify use DPlayer to preview video
 
+Add protect folder function
+
 
 ## Important
 
