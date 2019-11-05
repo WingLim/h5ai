@@ -4,7 +4,8 @@ const server = require('../server');
 const verifyTpl =
         `<div id="login-wrapper">
             <input id="password" type="password" placeholder="请输入访问目录密码"/>
-            <span id="login">Verify</span>
+            <br />
+            <button id="login">Verify</button>
         </div>`;
 
 const reload = () => {
@@ -28,7 +29,7 @@ const addVerify = () => {
     try {
         dom('#login-wrapper').rm();
     } finally {
-        dom(verifyTpl).appTo('#content');
+        dom(verifyTpl).appTo('#view');
     }
 
     dom('#password').on('keydown', onKeydown)[0].focus();
