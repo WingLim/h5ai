@@ -214,7 +214,6 @@ const setHint = l10nKey => {
 };
 
 const setProtect = item => {
-    console.log(item);
     if (item.protected) {
         dom('#view-hint').rmCls('l10n-empty');
         setHint('protected');
