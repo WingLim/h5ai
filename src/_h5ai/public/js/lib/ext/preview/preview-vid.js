@@ -67,7 +67,7 @@ const load = item => {
             };
             preview.setLabels([preview.item.label], '', '');
         };
-        const loadXML = () => {
+        const m3u8Exist = () => {
             xhr.open('GET', m3u8, true);
             xhr.onreadystatechange = () => {
                 if (xhr.readyState === XHR.DONE) {
@@ -80,7 +80,7 @@ const load = item => {
             };
             xhr.send();
         };
-        loadXML();
+        m3u8Exist();
         addUnloadFn($el[0]);
     });
 };
