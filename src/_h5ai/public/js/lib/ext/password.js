@@ -4,9 +4,9 @@ const server = require('../server');
 const verifyTpl =
         `<br />
         <div id="login-wrapper">
-            <input id="password" type="password" placeholder="请输入访问目录密码"/>
+            <input id="password" type="password" placeholder="请输入访问密码"/>
             <br />
-            <button id="login">Verify</button>
+            <button id="login">验证</button>
         </div>`;
 
 const reload = () => {
